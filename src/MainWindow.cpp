@@ -286,10 +286,7 @@ void MainWindow::initUI()
     /* Setup plugins interfaces */
     QList<CutterPlugin *> plugins = core->getCutterPlugins();
     for (auto plugin : plugins) {
-        QDockWidget *pluginDock = plugin->setupInterface(this);
-        if (pluginDock) {
-            tabifyDockWidget(dashboardDock, pluginDock);
-        }
+        plugin->setupInterface(this);
     }
 }
 
@@ -323,6 +320,15 @@ void MainWindow::addExtraWidget(QDockWidget *extraDock)
     auto restoreExtraDock = qhelpers::forceWidth(extraDock->widget(), 600);
     qApp->processEvents();
     restoreExtraDock.restoreWidth(extraDock->widget());
+}
+
+void MainWindow::addPluginDockWidget(QDockWidget *dockWidget, QAction *action)
+{
+    addDockWidget(Qt::TopDockWidgetArea, dockWidget);
+    addDockWidgetAction(dockWidget, action);
+    ui->menuWindows->addAction(action);
+    tabifyDockWidget(dashboardDock, dockWidget);
+    updateDockActionChecked(action);
 }
 
 void MainWindow::openNewFile(InitialOptions options, bool skipOptionsDialog)
