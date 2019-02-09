@@ -2614,13 +2614,3 @@ QList<QString> CutterCore::getColorThemes()
     return r;
 }
 
-void CutterCore::setCutterPlugins(QList<CutterPlugin *> plugins)
-{
-    this->plugins = plugins;
-}
-
-QList<CutterPlugin *> CutterCore::getCutterPlugins()
-{
-    return plugins;
-}
-

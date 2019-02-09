@@ -3,6 +3,7 @@
 #include "ui_MainWindow.h"
 #include "common/Helpers.h"
 #include "CutterConfig.h"
+#include "plugins/PluginManager.h"
 
 // Qt Headers
 #include <QApplication>
@@ -284,8 +285,7 @@ void MainWindow::initUI()
             &MainWindow::updateTasksIndicator);
 
     /* Setup plugins interfaces */
-    QList<CutterPlugin *> plugins = core->getCutterPlugins();
-    for (auto plugin : plugins) {
+    for (auto plugin : Plugins()->getPlugins()) {
         plugin->setupInterface(this);
     }
 }
