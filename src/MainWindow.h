@@ -104,8 +104,11 @@ public:
     void addExtraWidget(QDockWidget *extraDock);
 
     void addPluginDockWidget(QDockWidget *dockWidget, QAction *action);
+    void addMenuFileAction(QAction *action);
 
     void updateDockActionChecked(QAction * action);
+
+    void messageBoxWarning(QString title, QString message);
 
     OverviewWidget *overviewDock = nullptr;
 
